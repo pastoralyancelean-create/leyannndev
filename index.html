@@ -803,40 +803,61 @@ aboutModal.addEventListener('click', (e) => {
     }
 });
 
-// Slideshow — scroll inside container to switch photos
+// Slideshow — swipe left/right (mobile/iOS) + scroll (desktop)
 (function() {
     const container = document.getElementById('slideContainer');
     const wrapper = document.getElementById('slideWrapper');
     if (!container || !wrapper) return;
     const total = 5;
     let current = 0;
-    let scrollLocked = false;
+    let locked = false;
 
     function goTo(index) {
         current = (index + total) % total;
-        wrapper.style.transform = `translateX(-${current * 100}%)`;
+        wrapper.style.transform = 'translateX(-' + (current * 100) + '%)';
         for (let i = 0; i < total; i++) {
             const dot = document.getElementById('slideDot' + i);
             if (dot) dot.className = i === current
                 ? 'w-3 h-3 rounded-full bg-indigo-500 transition-all'
                 : 'w-3 h-3 rounded-full bg-white/40 transition-all';
         }
+        locked = true;
+        setTimeout(() => { locked = false; }, 700);
     }
 
+    // Desktop: horizontal scroll wheel
     container.addEventListener('wheel', (e) => {
+        if (locked) return;
+        const dir = e.deltaX !== 0 ? e.deltaX : e.deltaY;
+        if (Math.abs(dir) < 10) return;
         e.preventDefault();
-        if (scrollLocked) return;
-        scrollLocked = true;
-        goTo(e.deltaY > 0 ? current + 1 : current - 1);
-        setTimeout(() => { scrollLocked = false; }, 800);
+        goTo(dir > 0 ? current + 1 : current - 1);
     }, { passive: false });
 
-    // Touch swipe support
-    let touchStartY = 0;
-    container.addEventListener('touchstart', (e) => { touchStartY = e.touches[0].clientY; }, { passive: true });
+    // Touch: swipe left/right (iOS + Android)
+    let tx = 0, ty = 0;
+    container.addEventListener('touchstart', (e) => {
+        tx = e.touches[0].clientX;
+        ty = e.touches[0].clientY;
+    }, { passive: true });
+
+    container.addEventListener('touchmove', (e) => {
+        if (locked) return;
+        const dx = tx - e.touches[0].clientX;
+        const dy = ty - e.touches[0].clientY;
+        // only hijack horizontal swipes
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 10) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
     container.addEventListener('touchend', (e) => {
-        const diff = touchStartY - e.changedTouches[0].clientY;
-        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+        if (locked) return;
+        const dx = tx - e.changedTouches[0].clientX;
+        const dy = ty - e.changedTouches[0].clientY;
+        if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+            goTo(dx > 0 ? current + 1 : current - 1);
+        }
     }, { passive: true });
 })();
 

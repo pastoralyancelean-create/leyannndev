@@ -550,6 +550,42 @@ input:focus, textarea:focus {
     </form>
 </section>
 
+<!-- LAYOUT AND DESIGNS SECTION -->
+<section class="py-24 bg-slate-900 text-white text-center">
+    <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-5xl font-black mb-4" data-aos="fade-up">Layout and Designs</h2>
+        <p class="opacity-70 mb-12 text-lg" data-aos="fade-up" data-aos-delay="100">A glimpse of my creative work</p>
+
+        <!-- Slideshow Container -->
+        <div class="relative w-full overflow-hidden rounded-3xl glass" style="max-height: 520px;" data-aos="zoom-in" data-aos-delay="200">
+            <div id="slideWrapper" class="flex transition-transform duration-700 ease-in-out" style="will-change: transform;">
+                <div class="min-w-full"><img src="photo1.jpg" alt="Design 1" class="w-full object-cover" style="max-height:520px;"></div>
+                <div class="min-w-full"><img src="photo2.jpg" alt="Design 2" class="w-full object-cover" style="max-height:520px;"></div>
+                <div class="min-w-full"><img src="photo3.jpg" alt="Design 3" class="w-full object-cover" style="max-height:520px;"></div>
+                <div class="min-w-full"><img src="photo4.jpg" alt="Design 4" class="w-full object-cover" style="max-height:520px;"></div>
+                <div class="min-w-full"><img src="photo5.jpg" alt="Design 5" class="w-full object-cover" style="max-height:520px;"></div>
+            </div>
+
+            <!-- Prev / Next Buttons -->
+            <button id="slidePrev" class="absolute left-4 top-1/2 -translate-y-1/2 glass p-3 rounded-full hover:scale-110 transition z-10">
+                <i data-lucide="chevron-left" class="w-6 h-6 text-white"></i>
+            </button>
+            <button id="slideNext" class="absolute right-4 top-1/2 -translate-y-1/2 glass p-3 rounded-full hover:scale-110 transition z-10">
+                <i data-lucide="chevron-right" class="w-6 h-6 text-white"></i>
+            </button>
+
+            <!-- Slide counter -->
+            <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                <span id="slideDot0" class="w-3 h-3 rounded-full bg-indigo-500 transition-all"></span>
+                <span id="slideDot1" class="w-3 h-3 rounded-full bg-white/40 transition-all"></span>
+                <span id="slideDot2" class="w-3 h-3 rounded-full bg-white/40 transition-all"></span>
+                <span id="slideDot3" class="w-3 h-3 rounded-full bg-white/40 transition-all"></span>
+                <span id="slideDot4" class="w-3 h-3 rounded-full bg-white/40 transition-all"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
 <footer class="text-center py-8 opacity-60 code-font">
     ©Leyannn_Dev • Built with <span class="heart-clickable" id="heartBtn" title="Click to know more about the developer">💜</span>
 </footer>
@@ -774,6 +810,35 @@ aboutModal.addEventListener('click', (e) => {
         aboutModal.classList.remove('active');
     }
 });
+
+// Slideshow
+(function() {
+    const wrapper = document.getElementById('slideWrapper');
+    if (!wrapper) return;
+    const total = 5;
+    let current = 0;
+    let autoSlide;
+
+    function goTo(index) {
+        current = (index + total) % total;
+        wrapper.style.transform = `translateX(-${current * 100}%)`;
+        for (let i = 0; i < total; i++) {
+            const dot = document.getElementById('slideDot' + i);
+            if (dot) dot.className = i === current
+                ? 'w-3 h-3 rounded-full bg-indigo-500 transition-all'
+                : 'w-3 h-3 rounded-full bg-white/40 transition-all';
+        }
+    }
+
+    function startAuto() {
+        autoSlide = setInterval(() => goTo(current + 1), 3500);
+    }
+
+    document.getElementById('slideNext').addEventListener('click', () => { goTo(current + 1); clearInterval(autoSlide); startAuto(); });
+    document.getElementById('slidePrev').addEventListener('click', () => { goTo(current - 1); clearInterval(autoSlide); startAuto(); });
+
+    startAuto();
+})();
 
 </script>
 </body>

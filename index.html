@@ -302,6 +302,127 @@ input:focus, textarea:focus {
     background: rgba(255, 255, 255, 0.3);
     transform: rotate(90deg);
 }
+/* ===== ACHIEVEMENTS / PHOTOJOURNALISM ===== */
+.achievement-section {
+    background: linear-gradient(135deg, #0a0a0f 0%, #15152b 50%, #1a1a3e 100%);
+    position: relative;
+    overflow: hidden;
+}
+.achievement-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 15% 50%, rgba(251, 191, 36, 0.12), transparent 50%),
+                radial-gradient(circle at 85% 80%, rgba(251, 191, 36, 0.08), transparent 50%);
+    pointer-events: none;
+}
+.medal-card {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.medal-card::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: linear-gradient(45deg, transparent 40%, rgba(251, 191, 36, 0.15) 50%, transparent 60%);
+    transform: translateX(-100%) rotate(35deg);
+    transition: transform 0.6s ease;
+    pointer-events: none;
+}
+.medal-card:hover::after {
+    transform: translateX(100%) rotate(35deg);
+}
+.medal-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 50px rgba(251, 191, 36, 0.3);
+}
+.trophy-glow {
+    animation: trophy-pulse 2.5s ease-in-out infinite;
+}
+@keyframes trophy-pulse {
+    0%, 100% { filter: drop-shadow(0 0 15px rgba(251, 191, 36, 0.5)); transform: scale(1); }
+    50% { filter: drop-shadow(0 0 35px rgba(251, 191, 36, 0.9)); transform: scale(1.06); }
+}
+.gold-text {
+    background: linear-gradient(135deg, #fcd34d 0%, #f59e0b 50%, #fbbf24 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.winning-photo {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.winning-photo:hover {
+    transform: scale(1.04) rotate(1deg);
+    box-shadow: 0 25px 60px rgba(251, 191, 36, 0.4);
+}
+.achievement-badge {
+    background: linear-gradient(135deg, #fbbf24, #f59e0b);
+    box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+}
+.counter-num {
+    font-size: 2.5rem;
+    font-weight: 900;
+    line-height: 1;
+}
+.achievement-banner {
+    background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.1), transparent);
+    background-size: 200% 100%;
+    animation: shimmer-sweep 3s linear infinite;
+}
+@keyframes shimmer-sweep {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+/* ===== ENHANCED HERO ===== */
+.hero-tagline {
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: gradient-shift 4s ease infinite;
+}
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+.scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scroll-bounce 2s ease-in-out infinite;
+}
+@keyframes scroll-bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); opacity: 0.6; }
+    50% { transform: translateX(-50%) translateY(10px); opacity: 1; }
+}
+.neon-border {
+    position: relative;
+}
+.neon-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899, #6366f1);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background-size: 300% 300%;
+    animation: gradient-shift 3s ease infinite;
+}
+.neon-border:hover::before {
+    opacity: 1;
+}
+.stat-pill {
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.3);
+    backdrop-filter: blur(8px);
+}
 </style>
 </head>
 <body class="bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-white transition">
@@ -316,16 +437,28 @@ input:focus, textarea:focus {
 
 <section class="min-h-screen flex items-center justify-center text-center bg-glow px-6 relative">
     <div data-aos="fade-up" data-aos-duration="1000">
-        <div class="arduino-badge mb-6 pulse-glow">
-            <i data-lucide="cpu" class="inline w-5 h-5"></i> Arduino Developer
+        <div class="flex flex-wrap gap-3 justify-center mb-6">
+            <div class="arduino-badge pulse-glow">
+                <i data-lucide="cpu" class="inline w-5 h-5"></i> Arduino Developer
+            </div>
+            <div class="achievement-badge text-black px-4 py-2 rounded-full font-semibold text-sm flex items-center gap-1.5">
+                <i data-lucide="camera" class="w-4 h-4"></i> Photojournalist
+            </div>
         </div>
         <h1 class="text-7xl font-black mb-6 glitch" data-text="Yance Lean">
-            Yance <span class="text-indigo-600">Lean</span>
+            Yance <span class="hero-tagline">Lean</span>
         </h1>
         <p id="typing" class="text-xl opacity-80 mb-8 code-font typing-cursor"></p>
         <div class="flex gap-4 justify-center flex-wrap">
             <a href="#arduino" class="glow-btn bg-teal-600 text-white px-10 py-4 rounded-2xl font-bold">Arduino Projects</a>
+            <a href="#achievements" class="glow-btn bg-gradient-to-r from-amber-500 to-orange-600 text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-2">
+                <i data-lucide="trophy" class="w-5 h-5"></i> My Achievements
+            </a>
         </div>
+    </div>
+    <div class="scroll-indicator flex flex-col items-center gap-2 text-white/50">
+        <span class="text-xs code-font">scroll</span>
+        <i data-lucide="chevron-down" class="w-6 h-6"></i>
     </div>
 </section>
 
@@ -341,6 +474,9 @@ input:focus, textarea:focus {
             </p>
             <p class="opacity-70 text-lg leading-relaxed mb-6">
                 I also craft modern, responsive websites with smooth animations, clean UI, and optimized performance. I combine my skills in hardware and software to create innovative solutions.
+            </p>
+            <p class="opacity-70 text-lg leading-relaxed mb-6">
+                Beyond the code, I'm an <span class="text-amber-500 font-bold">award-winning photojournalist</span> with multiple district and regional titles, plus a national top-10 finish. I tell stories through both pixels and code.
             </p>
             <!-- Favorite Song Section -->
             <div class="glass p-6 rounded-2xl mb-6 music-player" data-aos="fade-up" data-aos-delay="200">
@@ -369,6 +505,7 @@ input:focus, textarea:focus {
                 <span class="glass px-4 py-2 rounded-full text-sm font-semibold">Arduino IDE</span>
                 <span class="glass px-4 py-2 rounded-full text-sm font-semibold">Circuit Design</span>
                 <span class="glass px-4 py-2 rounded-full text-sm font-semibold">IoT</span>
+                <span class="glass px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1.5"><i data-lucide="camera" class="w-4 h-4 text-amber-500"></i> Photojournalism</span>
             </div>
         </div>
         <div data-aos="fade-left" class="relative">
@@ -484,10 +621,113 @@ input:focus, textarea:focus {
     </div>
 </section>
 
+<!-- PHOTOJOURNALISM ACHIEVEMENTS -->
+<section id="achievements" class="py-24 achievement-section text-white relative">
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
+        <!-- Header -->
+        <div class="text-center mb-16">
+            <div class="inline-flex items-center gap-2 achievement-badge px-6 py-2 rounded-full text-black font-bold mb-6" data-aos="zoom-in">
+                <i data-lucide="camera" class="w-5 h-5"></i> Photojournalism
+            </div>
+            <h2 class="text-5xl font-black mb-4" data-aos="fade-up">
+                My <span class="gold-text">Achievements</span>
+            </h2>
+            <p class="opacity-70 text-lg achievement-banner py-2 px-8 inline-block rounded-full" data-aos="fade-up" data-aos-delay="100">Winning moments behind the lens</p>
+        </div>
+
+        <!-- Winning Photos Gallery -->
+        <div class="grid md:grid-cols-2 gap-8 mb-16">
+            <div class="winning-photo glass rounded-3xl overflow-hidden card-3d relative group" data-aos="fade-right" data-aos-delay="200">
+                <img src="winning1.jpg" alt="Winning Photo 1" class="w-full h-96 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute top-4 right-4 achievement-badge px-4 py-1.5 rounded-full text-black text-sm font-bold flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <i data-lucide="trophy" class="w-4 h-4"></i> Champion
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <p class="text-amber-400 font-bold text-lg flex items-center gap-2"><i data-lucide="trophy" class="w-5 h-5"></i> Championship Shot</p>
+                </div>
+            </div>
+            <div class="winning-photo glass rounded-3xl overflow-hidden card-3d relative group" data-aos="fade-left" data-aos-delay="300">
+                <img src="winning2.jpg" alt="Winning Photo 2" class="w-full h-96 object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-amber-900/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div class="absolute top-4 right-4 achievement-badge px-4 py-1.5 rounded-full text-black text-sm font-bold flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <i data-lucide="award" class="w-4 h-4"></i> Award
+                </div>
+                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                    <p class="text-amber-400 font-bold text-lg flex items-center gap-2"><i data-lucide="award" class="w-5 h-5"></i> Award-Winning Capture</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Achievement Cards -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- 3x District Champion -->
+            <div class="medal-card glass rounded-3xl p-8 text-center relative" data-aos="flip-left" data-aos-delay="100">
+                <div class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/50 trophy-glow">
+                    <i data-lucide="trophy" class="w-10 h-10 text-white"></i>
+                </div>
+                <p class="counter-num gold-text mb-2">3&times;</p>
+                <h3 class="text-lg font-bold mb-2">District Champion</h3>
+                <p class="text-sm opacity-70 leading-relaxed">Dominated the district photojournalism competition three consecutive times.</p>
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 rounded-b-3xl"></div>
+            </div>
+
+            <!-- Top 6 & 9 Division -->
+            <div class="medal-card glass rounded-3xl p-8 text-center relative" data-aos="flip-left" data-aos-delay="200">
+                <div class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-slate-300 to-slate-500 shadow-lg shadow-slate-500/50 trophy-glow">
+                    <i data-lucide="medal" class="w-10 h-10 text-white"></i>
+                </div>
+                <p class="counter-num text-slate-300 mb-2">Top 6 &amp; 9</p>
+                <h3 class="text-lg font-bold mb-2">Division Level</h3>
+                <p class="text-sm opacity-70 leading-relaxed">Ranked among the top contenders across two division photojournalism contests.</p>
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-slate-300 via-slate-400 to-slate-300 rounded-b-3xl"></div>
+            </div>
+
+            <!-- Regional Champion -->
+            <div class="medal-card glass rounded-3xl p-8 text-center relative" data-aos="flip-left" data-aos-delay="300">
+                <div class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 shadow-lg shadow-amber-500/50 trophy-glow">
+                    <i data-lucide="award" class="w-10 h-10 text-white"></i>
+                </div>
+                <p class="counter-num gold-text mb-2">Champion</p>
+                <h3 class="text-lg font-bold mb-2">Regional Level</h3>
+                <p class="text-sm opacity-70 leading-relaxed">Claimed the championship title at the regional photojournalism competition.</p>
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 rounded-b-3xl"></div>
+            </div>
+
+            <!-- Top 10 National -->
+            <div class="medal-card glass rounded-3xl p-8 text-center relative" data-aos="flip-left" data-aos-delay="400">
+                <div class="flex items-center justify-center w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-br from-amber-600 to-orange-700 shadow-lg shadow-orange-500/50 trophy-glow">
+                    <i data-lucide="star" class="w-10 h-10 text-white"></i>
+                </div>
+                <p class="counter-num gold-text mb-2">Top 10</p>
+                <h3 class="text-lg font-bold mb-2">National Level</h3>
+                <p class="text-sm opacity-70 leading-relaxed">Ranked among the elite top 10 photojournalists in the entire nation.</p>
+                <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-600 via-orange-600 to-amber-600 rounded-b-3xl"></div>
+            </div>
+        </div>
+
+        <!-- Stat Bar -->
+        <div class="flex flex-wrap justify-center gap-4 mt-12" data-aos="fade-up" data-aos-delay="500">
+            <div class="stat-pill px-6 py-3 rounded-full text-amber-400 font-semibold text-sm flex items-center gap-2">
+                <i data-lucide="trophy" class="w-4 h-4"></i> 3 District Titles
+            </div>
+            <div class="stat-pill px-6 py-3 rounded-full text-amber-400 font-semibold text-sm flex items-center gap-2">
+                <i data-lucide="medal" class="w-4 h-4"></i> 2 Division Top Finishes
+            </div>
+            <div class="stat-pill px-6 py-3 rounded-full text-amber-400 font-semibold text-sm flex items-center gap-2">
+                <i data-lucide="award" class="w-4 h-4"></i> 1 Regional Crown
+            </div>
+            <div class="stat-pill px-6 py-3 rounded-full text-amber-400 font-semibold text-sm flex items-center gap-2">
+                <i data-lucide="star" class="w-4 h-4"></i> National Top 10
+            </div>
+        </div>
+    </div>
+</section>
+
 <section class="py-24">
         <div class="max-w-6xl mx-auto px-6 text-center">
             <h2 class="text-5xl font-black mb-12" data-aos="fade-up">My Skills</h2>
-            <div class="grid md:grid-cols-4 gap-6">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 <div class="glass p-8 rounded-2xl skill-card" data-aos="zoom-in" data-aos-delay="100">
                     <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-yellow-400 to-orange-600 shadow-lg shadow-yellow-500/50">
                         <i data-lucide="zap" class="w-8 h-8 text-white"></i>
@@ -515,25 +755,54 @@ input:focus, textarea:focus {
                     </div>
                     <h3 class="font-bold text-xl">UI/UX Design</h3>
                 </div>
+
+                <div class="glass p-8 rounded-2xl skill-card" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="flex items-center justify-center w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-400 to-orange-600 shadow-lg shadow-amber-500/50">
+                        <i data-lucide="camera" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h3 class="font-bold text-xl">Photojournalism</h3>
+                </div>
         </div>
     </div>
 </section>
 
 
 <section class="py-24 bg-slate-900 text-white text-center">
-    <h2 class="text-5xl font-black mb-12" data-aos="fade-up">Client Feedback</h2>
+    <h2 class="text-5xl font-black mb-4" data-aos="fade-up">Client Feedback</h2>
+    <p class="opacity-70 mb-12 text-lg" data-aos="fade-up" data-aos-delay="100">What people say about my work</p>
     <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-8 px-6 items-center">
-        <div class="glass p-8 rounded-2xl" data-aos="fade-right">Dedicated Web Developer</div>
+        <div class="glass p-8 rounded-2xl neon-border" data-aos="fade-right">
+            <div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-teal-400 to-teal-600">
+                <i data-lucide="code-2" class="w-6 h-6 text-white"></i>
+            </div>
+            <p class="font-semibold">Dedicated Web Developer</p>
+        </div>
         <div class="feedback-amp" data-aos="zoom-in">&</div>
-        <div class="glass p-8 rounded-2xl" data-aos="fade-left">Responsive, Clean, and Modern</div>
+        <div class="glass p-8 rounded-2xl neon-border" data-aos="fade-left">
+            <div class="flex items-center justify-center w-12 h-12 mx-auto mb-4 rounded-full bg-gradient-to-br from-indigo-400 to-purple-600">
+                <i data-lucide="sparkles" class="w-6 h-6 text-white"></i>
+            </div>
+            <p class="font-semibold">Responsive, Clean &amp; Modern</p>
+        </div>
     </div>
 </section>
 
 <section class="py-24 text-center">
-    <h2 class="text-5xl font-black mb-6" data-aos="fade-up">Open for Freelance & Collaboration</h2>
+    <h2 class="text-5xl font-black mb-6" data-aos="fade-up">Open for Freelance &amp; Collaboration</h2>
     <p class="opacity-70 mb-8 text-lg leading-relaxed max-w-3xl mx-auto px-6" data-aos="fade-up" data-aos-delay="100">
-        I help businesses and brands establish a strong online presence through modern, responsive websites. I also create custom Arduino solutions for automation and IoT projects. Let's collaborate!
+        I help businesses and brands establish a strong online presence through modern, responsive websites. I also create custom Arduino solutions for automation and IoT projects — and capture stories through the lens as a competitive photojournalist. Let's build something great together!
     </p>
+    <div class="flex gap-4 justify-center flex-wrap mb-4" data-aos="fade-up" data-aos-delay="150">
+        <span class="glass px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+            <i data-lucide="globe" class="w-4 h-4 text-indigo-500"></i> Web Development
+        </span>
+        <span class="glass px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+            <i data-lucide="cpu" class="w-4 h-4 text-teal-500"></i> Arduino &amp; IoT
+        </span>
+        <span class="glass px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+            <i data-lucide="camera" class="w-4 h-4 text-amber-500"></i> Photography
+        </span>
+    </div>
     <a href="#contact" class="bg-indigo-600 text-white px-10 py-4 rounded-2xl font-bold glow-btn" data-aos="zoom-in" data-aos-delay="200">Hire Me</a>
 </section>
 
@@ -578,8 +847,13 @@ input:focus, textarea:focus {
     </div>
 </section>
 
-<footer class="text-center py-8 opacity-60 code-font">
-    ©Leyannn_Dev • Built with <span class="heart-clickable" id="heartBtn" title="Click to know more about the developer">💜</span>
+<footer class="text-center py-8 code-font">
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-3">
+        <span class="glass px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-1.5"><i data-lucide="cpu" class="w-4 h-4 text-teal-500"></i> Arduino Dev</span>
+        <span class="glass px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-1.5"><i data-lucide="globe" class="w-4 h-4 text-indigo-500"></i> Web Dev</span>
+        <span class="glass px-4 py-1.5 rounded-full text-sm font-semibold flex items-center gap-1.5"><i data-lucide="camera" class="w-4 h-4 text-amber-500"></i> Photojournalist</span>
+    </div>
+    <p class="opacity-60">&copy;Leyannn_Dev &bull; Built with <span class="heart-clickable" id="heartBtn" title="Click to know more about the developer">&#128154;</span></p>
 </footer>
 
 <!-- About Developer Modal -->
@@ -710,7 +984,7 @@ particlesJS('particles-js', {
     retina_detect: true
 });
 
-const text = "Arduino Developer • Web Developer • IoT Enthusiast • Freelancer";
+const text = "Arduino Developer • Web Developer • IoT Enthusiast • Photojournalist • Freelancer";
 let i = 0;
 function typing() {
     if (i < text.length) {

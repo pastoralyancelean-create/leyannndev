@@ -12,7 +12,7 @@
 <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=VT323&family=Space+Grotesk:wght@400;700&family=Caveat:wght@600&display=swap');
 * {
     margin: 0;
     padding: 0;
@@ -165,34 +165,6 @@ input:focus, textarea:focus {
     transform: translateY(-10px) rotate(2deg);
     box-shadow: 0 15px 30px rgba(99,102,241,0.3);
 }
-.music-player {
-    position: relative;
-    overflow: hidden;
-}
-.music-player::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(99, 102, 241, 0.1), transparent);
-    animation: music-glow 3s linear infinite;
-}
-@keyframes music-glow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-.music-title {
-    background: linear-gradient(135deg, #6366f1, #a855f7);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: text-shimmer 2s ease-in-out infinite;
-}
-@keyframes text-shimmer {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
 .profile-image-container {
     position: relative;
     overflow: hidden;
@@ -211,14 +183,6 @@ input:focus, textarea:focus {
 @keyframes shine {
     0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
     100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-}
-#playBtn {
-    position: relative;
-    animation: pulse-play 2s ease-in-out infinite;
-}
-@keyframes pulse-play {
-    0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7); }
-    50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
 }
 .modal-overlay {
     position: fixed;
@@ -423,6 +387,135 @@ input:focus, textarea:focus {
     border: 1px solid rgba(251, 191, 36, 0.3);
     backdrop-filter: blur(8px);
 }
+/* ===== PORTFOLIO INTRO (New Hero + About) ===== */
+.portfolio-intro {
+    background-color: #f3f5f8;
+    background-image: linear-gradient(to right, rgba(170, 190, 215, 0.35) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(170, 190, 215, 0.35) 1px, transparent 1px);
+    background-size: 32px 32px;
+    font-family: 'VT323', monospace;
+    color: #111827;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+.portfolio-intro .container {
+    max-width: 900px;
+    width: 100%;
+    position: relative;
+}
+.portfolio-intro nav {
+    display: flex;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+.portfolio-intro nav a {
+    text-decoration: none;
+    color: #000;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: opacity 0.2s;
+}
+.portfolio-intro nav a:hover {
+    opacity: 0.6;
+}
+.portfolio-intro .hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin-bottom: 90px;
+}
+.portfolio-intro .main-photo-frame {
+    border: 3px solid #000;
+    background: #000;
+    padding: 0;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 580px;
+    width: 100%;
+}
+.portfolio-intro .main-photo-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(100%) contrast(110%);
+}
+.portfolio-intro .hero-bottom-row {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 35px;
+}
+.portfolio-intro .hero-tagline {
+    font-size: 21px;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    max-width: 480px;
+    color: #222;
+}
+.portfolio-intro .signature-text {
+    font-family: 'Caveat', cursive;
+    font-size: 48px;
+    color: #1a1a1a;
+    transform: rotate(-3deg);
+    margin-right: 20px;
+}
+.portfolio-intro .about-section {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 40px;
+    align-items: start;
+    position: relative;
+}
+.portfolio-intro .about-content {
+    padding-top: 10px;
+}
+.portfolio-intro .about-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #000;
+    letter-spacing: -1px;
+}
+.portfolio-intro .about-title span {
+    font-style: italic;
+    font-weight: 400;
+}
+.portfolio-intro .about-text {
+    font-size: 20px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    color: #222;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    letter-spacing: 0.5px;
+}
+.portfolio-intro .photo-card {
+    background-color: #b0cbe8;
+    padding: 30px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+.portfolio-intro .photo-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 2px;
+}
+@media (max-width: 768px) {
+    .portfolio-intro nav { gap: 30px; }
+    .portfolio-intro .about-section { grid-template-columns: 1fr; }
+    .portfolio-intro .hero-bottom-row { flex-direction: column; gap: 20px; }
+}
 </style>
 </head>
 <body class="bg-gray-50 dark:bg-slate-950 text-slate-900 dark:text-white transition">
@@ -435,94 +528,43 @@ input:focus, textarea:focus {
     <i data-lucide="moon"></i>
 </button>
 
-<section class="min-h-screen flex items-center justify-center text-center bg-glow px-6 relative">
-    <div data-aos="fade-up" data-aos-duration="1000">
-        <div class="flex flex-wrap gap-3 justify-center mb-6">
-            <div class="arduino-badge pulse-glow">
-                <i data-lucide="cpu" class="inline w-5 h-5"></i> Arduino Developer
-            </div>
-            <div class="achievement-badge text-black px-4 py-2 rounded-full font-semibold text-sm flex items-center gap-1.5">
-                <i data-lucide="camera" class="w-4 h-4"></i> Photojournalist
-            </div>
-        </div>
-        <h1 class="text-7xl font-black mb-6 glitch" data-text="Yance Lean">
-            Yance <span class="hero-tagline">Lean</span>
-        </h1>
-        <p id="typing" class="text-xl opacity-80 mb-8 code-font typing-cursor"></p>
-        <div class="flex gap-4 justify-center flex-wrap">
-            <a href="#arduino" class="glow-btn bg-teal-600 text-white px-10 py-4 rounded-2xl font-bold">Arduino Projects</a>
-            <a href="#achievements" class="glow-btn bg-gradient-to-r from-amber-500 to-orange-600 text-white px-10 py-4 rounded-2xl font-bold flex items-center gap-2">
-                <i data-lucide="trophy" class="w-5 h-5"></i> My Achievements
-            </a>
-        </div>
-    </div>
-    <div class="scroll-indicator flex flex-col items-center gap-2 text-white/50">
-        <span class="text-xs code-font">scroll</span>
-        <i data-lucide="chevron-down" class="w-6 h-6"></i>
-    </div>
-</section>
+<div class="portfolio-intro">
+    <div class="container">
+        <!-- Navigation -->
+        <nav>
+            <a href="#home">HOME</a>
+            <a href="#about">ABOUT</a>
+            <a href="#works">WORKS</a>
+            <a href="#contact">CONTACT</a>
+        </nav>
 
-<section class="py-24 max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div data-aos="fade-right">
-            <h2 class="text-5xl font-black mb-6">About Me</h2>
-            <p class="opacity-70 text-lg leading-relaxed mb-4">
-                Hi, I'm <span class="text-indigo-600 font-bold">Yance Lean</span>, a passionate <span class="code-font text-teal-600">Arduino developer</span> and web developer.
-            </p>
-            <p class="opacity-70 text-lg leading-relaxed mb-4">
-                I specialize in creating <span class="font-semibold">embedded systems</span> and <span class="font-semibold">IoT projects</span> using <span class="arduino-badge text-sm">Arduino Uno</span>. From automation systems to sensor-based projects, I bring hardware to life with code.
-            </p>
-            <p class="opacity-70 text-lg leading-relaxed mb-6">
-                I also craft modern, responsive websites with smooth animations, clean UI, and optimized performance. I combine my skills in hardware and software to create innovative solutions.
-            </p>
-            <p class="opacity-70 text-lg leading-relaxed mb-6">
-                Beyond the code, I'm an <span class="text-amber-500 font-bold">award-winning photojournalist</span> with multiple district and regional titles, plus a national top-10 finish. I tell stories through both pixels and code.
-            </p>
-            <!-- Favorite Song Section -->
-            <div class="glass p-6 rounded-2xl mb-6 music-player" data-aos="fade-up" data-aos-delay="200">
-                <div class="flex items-center gap-4">
-                    <button id="playBtn" class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-all shadow-lg hover:shadow-indigo-500/50">
-                        <i data-lucide="play" class="w-6 h-6 text-white" id="playIcon"></i>
-                    </button>
-                    <div class="flex-1">
-                        <p class="text-sm opacity-60 mb-1">🎵 Favorite Song</p>
-                        <h3 class="font-bold text-lg music-title">Your Love</h3>
-                        <p class="text-sm opacity-70">Michelle Wright</p>
-                    </div>
-                    <div class="volume-control">
-                        <i data-lucide="volume-2" class="w-5 h-5 opacity-70"></i>
-                    </div>
-                </div>
-                <div class="mt-4 h-1 bg-gray-300 dark:bg-gray-700 rounded-full overflow-hidden">
-                    <audio id="audioPlayer"> 
-                        <source controls src="./yourlove.mp3"></audio>
-                    <div id="progressMusic" class="h-full bg-gradient-to-r from-indigo-600 to-purple-600 transition-all duration-300" style="width: 0%"></div>
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="main-photo-frame">
+                <img src="angas.jpg" alt="Featured Work">
+            </div>
+            <div class="hero-bottom-row">
+                <p class="hero-tagline">A DIGITIZED COLLECTION OF THINGS AND CORE MEMORIES THAT LIVE RENT-FREE IN MY MIND.</p>
+                <div class="signature-text">LENTE</div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <h1 class="about-title">about <span>me</span></h1>
+                <div class="about-text">
+                    <p>HI, I'M YANCE LEAN, A PASSIONATE ARDUINO DEVELOPER AND WEB DEVELOPER. I SPECIALIZE IN CREATING EMBEDDED SYSTEMS AND IOT PROJECTS USING ARDUINO UNO. FROM AUTOMATION SYSTEMS TO SENSOR-BASED PROJECTS, I BRING HARDWARE TO LIFE WITH CODE.</p>
+                    <p>I ALSO CRAFT MODERN, RESPONSIVE WEBSITES WITH SMOOTH ANIMATIONS, CLEAN UI, AND OPTIMIZED PERFORMANCE. I COMBINE MY SKILLS IN HARDWARE AND SOFTWARE TO CREATE INNOVATIVE SOLUTIONS.</p>
+                    <p>BEYOND THE CODE, I'M AN AWARD-WINNING PHOTOJOURNALIST WITH MULTIPLE DISTRICT AND REGIONAL TITLES, PLUS A NATIONAL TOP-10 FINISH. I TELL STORIES THROUGH BOTH PIXELS AND CODE.</p>
                 </div>
             </div>
-            
-            <div class="flex gap-3 flex-wrap">
-                <span class="glass px-4 py-2 rounded-full text-sm font-semibold">C/C++</span>
-                <span class="glass px-4 py-2 rounded-full text-sm font-semibold">Arduino IDE</span>
-                <span class="glass px-4 py-2 rounded-full text-sm font-semibold">Circuit Design</span>
-                <span class="glass px-4 py-2 rounded-full text-sm font-semibold">IoT</span>
-                <span class="glass px-4 py-2 rounded-full text-sm font-semibold flex items-center gap-1.5"><i data-lucide="camera" class="w-4 h-4 text-amber-500"></i> Photojournalist</span>
+            <div class="photo-card">
+                <img src="pastoral.jpg" alt="Yance Lean">
             </div>
-        </div>
-        <div data-aos="fade-left" class="relative">
-                     <div class="profile-image-container glass rounded-3xl overflow-hidden card-3d relative group">
-                <img src="profile.jpg" alt="Leyannn Dev" class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-indigo-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                <div class="absolute bottom-0 left-0 right-0 p-6 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                    <p class="text-white font-bold text-xl text-center">Yance Lean</p>
-                    <p class="text-white/80 text-center">Arduino Developer</p>
-                </div>
-            </div>
-            <div class="absolute -bottom-6 -right-6 glass p-6 rounded-2xl floating">
-                <p class="code-font text-sm text-indigo-600 font-bold">void loop() { code(); }</p>
-            </div>
-        </div>
+        </section>
     </div>
-</section>
+</div>
 
 <!-- ARDUINO PROJECTS -->
 <section id="arduino" class="py-24 bg-slate-900 text-white">
@@ -987,8 +1029,10 @@ particlesJS('particles-js', {
 const text = "Arduino Developer • Web Developer • IoT Enthusiast • Photojournalist • Freelancer";
 let i = 0;
 function typing() {
+    const el = document.getElementById("typing");
+    if (!el) return;
     if (i < text.length) {
-        document.getElementById("typing").innerHTML += text.charAt(i);
+        el.innerHTML += text.charAt(i);
         i++;
         setTimeout(typing, 60);
     }
@@ -1008,36 +1052,6 @@ themeToggle.onclick = () => {
 };
 
 emailjs.init("r-OZq0GDLQ9hb2B51");
-
-// Music Player Functionality - Using Local MP3
-const playBtn = document.getElementById('playBtn');
-const playIcon = document.getElementById('playIcon');
-const progressMusic = document.getElementById('progressMusic');
-const audioPlayer = document.getElementById('audioPlayer');
-
-playBtn.addEventListener('click', () => {
-    if (audioPlayer.paused) {
-        audioPlayer.play();
-        playIcon.setAttribute('data-lucide', 'pause');
-    } else {
-        audioPlayer.pause();
-        playIcon.setAttribute('data-lucide', 'play');
-    }
-    lucide.createIcons();
-});
-
-// Update progress bar
-audioPlayer.addEventListener('timeupdate', () => {
-    const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
-    progressMusic.style.width = progress + '%';
-});
-
-// Reset when finished
-audioPlayer.addEventListener('ended', () => {
-    playIcon.setAttribute('data-lucide', 'play');
-    progressMusic.style.width = '0%';
-    lucide.createIcons();
-});
 
 const contactForm = document.getElementById('contactForm');
 contactForm.addEventListener('submit', function(e) {

@@ -465,12 +465,11 @@ input:focus, textarea:focus {
 }
 .portfolio-intro .about-section {
     display: grid;
-    grid-template-columns: 0.6fr 1.4fr;
-    gap: 30px;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
     align-items: center;
     padding: 30px 0;
-}
-.portfolio-intro .about-content {
+}.portfolio-intro .about-content {
     padding-top: 0;
 }
 .portfolio-intro .about-title {
@@ -510,12 +509,15 @@ input:focus, textarea:focus {
     align-items: center;
     position: relative;
     box-shadow: none;
+    overflow: visible;
 }
 .portfolio-intro .photo-card img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
     object-fit: contain;
     border-radius: 0;
+    transform: scale(1.5);
+    transform-origin: right center;
 }
 @media (max-width: 768px) {
     .portfolio-intro nav { gap: 30px; }

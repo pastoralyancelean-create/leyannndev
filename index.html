@@ -465,35 +465,42 @@ input:focus, textarea:focus {
 }
 .portfolio-intro .about-section {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    align-items: start;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 60px;
+    align-items: center;
     position: relative;
+    padding: 40px 0;
 }
 .portfolio-intro .about-content {
-    padding-top: 10px;
+    padding-top: 0;
 }
 .portfolio-intro .about-title {
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 56px;
+    font-size: 64px;
     font-weight: 700;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     color: #000;
-    letter-spacing: -1px;
+    letter-spacing: -1.5px;
+    line-height: 1;
 }
 .portfolio-intro .about-title span {
     font-style: italic;
     font-weight: 400;
+    color: #6366f1;
 }
 .portfolio-intro .about-text {
-    font-size: 26px;
-    line-height: 1.6;
-    text-transform: uppercase;
-    color: #222;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 23px;
+    line-height: 1.7;
+    color: #333;
     display: flex;
     flex-direction: column;
-    gap: 22px;
-    letter-spacing: 0.5px;
+    gap: 18px;
+    letter-spacing: 0.2px;
+}
+.portfolio-intro .about-text strong {
+    color: #000;
+    font-weight: 700;
 }
 .portfolio-intro .photo-card {
     background: transparent;
@@ -506,14 +513,16 @@ input:focus, textarea:focus {
     box-shadow: none;
 }
 .portfolio-intro .photo-card img {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     object-fit: contain;
     border-radius: 0;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
 }
 @media (max-width: 768px) {
     .portfolio-intro nav { gap: 30px; }
-    .portfolio-intro .about-section { grid-template-columns: 1fr; }
+    .portfolio-intro .about-section { grid-template-columns: 1fr; gap: 40px; }
+    .portfolio-intro .about-title { font-size: 44px; }
     .portfolio-intro .hero-bottom-row { flex-direction: column; gap: 20px; }
 }
 </style>
@@ -541,7 +550,7 @@ input:focus, textarea:focus {
         <!-- Hero Section -->
         <section class="hero-section" id="home">
             <div class="main-photo-frame">
-                <img src="angas.jpg" alt="Featured Work">
+                <img src="pastoral.jpg" alt="Featured Work">
             </div>
             <div class="hero-bottom-row">
                 <p class="hero-tagline">A DIGITIZED COLLECTION OF THINGS AND CORE MEMORIES THAT LIVE RENT-FREE IN MY MIND.</p>
@@ -554,13 +563,13 @@ input:focus, textarea:focus {
             <div class="about-content">
                 <h1 class="about-title">about <span>me</span></h1>
                 <div class="about-text">
-                    <p>HI, I'M YANCE LEAN, A PASSIONATE ARDUINO DEVELOPER AND WEB DEVELOPER. I SPECIALIZE IN CREATING EMBEDDED SYSTEMS AND IOT PROJECTS USING ARDUINO UNO. FROM AUTOMATION SYSTEMS TO SENSOR-BASED PROJECTS, I BRING HARDWARE TO LIFE WITH CODE.</p>
-                    <p>I ALSO CRAFT MODERN, RESPONSIVE WEBSITES WITH SMOOTH ANIMATIONS, CLEAN UI, AND OPTIMIZED PERFORMANCE. I COMBINE MY SKILLS IN HARDWARE AND SOFTWARE TO CREATE INNOVATIVE SOLUTIONS.</p>
-                    <p>BEYOND THE CODE, I'M AN AWARD-WINNING PHOTOJOURNALIST WITH MULTIPLE DISTRICT AND REGIONAL TITLES, PLUS A NATIONAL TOP-10 FINISH. I TELL STORIES THROUGH BOTH PIXELS AND CODE.</p>
+                    <p>Hi, I'm <strong>Yance Lean</strong>, a passionate Arduino developer and web developer. I specialize in creating embedded systems and IoT projects using Arduino Uno. From automation systems to sensor-based projects, I bring hardware to life with code.</p>
+                    <p>I also craft modern, responsive websites with smooth animations, clean UI, and optimized performance. I combine my skills in hardware and software to create innovative solutions.</p>
+                    <p>Beyond the code, I'm an <strong>award-winning photojournalist</strong> with multiple district and regional titles, plus a national top-10 finish. I tell stories through both pixels and code.</p>
                 </div>
             </div>
             <div class="photo-card">
-                <img src="pastoral.jpg" alt="Yance Lean">
+                <img src="angas.jpg" alt="Yance Lean">
             </div>
         </section>
     </div>
